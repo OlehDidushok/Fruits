@@ -33,8 +33,18 @@ struct SettingsView: View {
                                 .font(.footnote)
                         }
                     }
-                    
                     // MARK:  - SECTION 2
+                    GroupBox(label:
+                                SettingsLabelView(labelText: "Applciation", labelImage: "apps.iphone")
+                    ) {
+                        SettingsRowView(name: "Developer", content: "Oleh Didushok")
+                        SettingsRowView(name: "Designer", content: "Oleh Didushok")
+                        SettingsRowView(name: "Compatibility", content: "iOS 14")
+                        SettingsRowView(name: "Repository", linkLabel: "GitHub", linkDestination: "https://github.com/OlehDidushok?tab=repositories")
+                        SettingsRowView(name: "LinkedIn", linkLabel: "OlehDidushok", linkDestination: "https://www.linkedin.com/in/oleh-didushok-556a21297/")
+                        SettingsRowView(name: "SwiftUI", content: "2.0")
+                        SettingsRowView(name: "Version", content: "1.0.1")
+                    } //: BOX
                     
                     // MARK:  - SECTION 3
                     
