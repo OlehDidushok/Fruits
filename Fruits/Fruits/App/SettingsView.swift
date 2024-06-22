@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     // MARK: - PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    
+    @AppStorage("isOnboarding") var isOnboarding = false
     //MARK: - BODY
     
     var body: some View {
@@ -35,6 +35,38 @@ struct SettingsView: View {
                     }
                     // MARK:  - SECTION 2
                     GroupBox(label:
+                    SettingsLabelView(labelText: "Customization",
+                                      labelImage: "paintbrush")
+                    ) {
+                        Divider().padding(.vertical,4)
+                        Text("If you wish, you can restart the applocation by toggle the switch in this box. That way it starts the onboarding process and you will see the welcome screen again.")
+                            .padding(.vertical, 8)
+                            .frame(minHeight: 60)
+                            .layoutPriority(1)
+                            .font(.footnote)
+                            .multilineTextAlignment(.leading)
+                        
+                        Toggle(isOn: $isOnboarding, label: {
+                            if isOnboarding {
+                                Text("Restarted".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.green)
+                            } else {
+                                Text("Restart".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.secondary)
+                            }
+                        })
+                        .padding()
+                        .background(
+                            Color(UIColor.tertiarySystemBackground)
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                        )
+                        
+                    } //: BOX
+                    
+                    // MARK:  - SECTION 3
+                    GroupBox(label:
                                 SettingsLabelView(labelText: "Applciation", labelImage: "apps.iphone")
                     ) {
                         SettingsRowView(name: "Developer", content: "Oleh Didushok")
@@ -45,9 +77,6 @@ struct SettingsView: View {
                         SettingsRowView(name: "SwiftUI", content: "2.0")
                         SettingsRowView(name: "Version", content: "1.0.1")
                     } //: BOX
-                    
-                    // MARK:  - SECTION 3
-                    
                     
                 }//: VSTACK
                 .navigationBarTitle(Text("Settings"), displayMode: .large)
